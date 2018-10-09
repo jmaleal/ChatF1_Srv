@@ -8,8 +8,8 @@ package Evento;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,12 +55,21 @@ public class Corrida {
         for (int i = 0; i <= 5; i++) { // i<=5 porque só apresenta as rimeiras 6 posições
             classificacao += participantes.get(i).getCarro().getnCarro() + ",";
         }
+        classificacao = classificacao + "\n";
         return classificacao;
     }
 
-    public synchronized String atualizacao(String msgAtualizacao) {
+    public synchronized String ultrapassagem(int ultrapassou, int ultrapassado) {
+        int i = 0;
+        for (Participante p : participantes) {
+            if (p.getCarro().getnCarro() == ultrapassado) {
+                Collections.swap(participantes, i, i + 1);
+                nAtualizacoes++;
+                continue;
+            }
+            i++;
+        }
 
-        /*falta metodo de ler a msg e atualizar lista...PARA ISSO É NECESSÁRIO SABER A ESTRUTURA DA MSG*/
         return obterClassificacao();
     }
 }

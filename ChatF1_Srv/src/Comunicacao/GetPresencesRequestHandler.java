@@ -20,7 +20,7 @@ public class GetPresencesRequestHandler extends Thread {
     public GetPresencesRequestHandler(Socket ligacao, Presences presences, Corrida corrida) {
         this.ligacao = ligacao;
         this.presences = presences;
-         this.corrida = corrida;
+        this.corrida = corrida;
         try {
             this.in = new BufferedReader(new InputStreamReader(ligacao.getInputStream()));
 
@@ -60,12 +60,25 @@ public class GetPresencesRequestHandler extends Thread {
 
                     case "class":
                         response = "teste aceite pelo servidor\n";
+                        response = corrida.obterClassificacao();
                         System.out.println("Enviada resposta: " + response);
                         out.println(response);
                         out.flush();
                         break;
+
+                    case "ult":
+                        String[] partes = metodo.split(" ");
+                        int carroUltrapassou = Integer.parseInt(partes[1]);
+                        int carroUltrapassado = Integer.parseInt(partes[2]);
+
+                        corrida.ultrapassagem(carroUltrapassou, carroUltrapassado);
+                        response = corrida.obterClassificacao();
+                        out.println(response);
+                        out.flush();
+                        break;
+
                     default: // Optional
-                        response = "mensagem desconhecida: \n" + msg;
+                        response = "mensagem desconhecida:" + msg + "\n";
                         System.out.println("Enviada resposta: " + response);
                         out.println(response);
                         out.flush();

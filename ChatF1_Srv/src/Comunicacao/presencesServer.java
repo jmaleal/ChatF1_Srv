@@ -3,14 +3,13 @@ package Comunicacao;
 import Evento.Corrida;
 import java.net.*;
 import java.io.*;
-import javax.swing.JOptionPane;
 
 public class presencesServer {
 
     static int DEFAULT_PORT = 8082;
-    private Corrida corrida = new Corrida();
+    static Corrida corrida = new Corrida();
 
-    public void startSrv() {
+    public static void main(String[] args) {
         int port = DEFAULT_PORT;
         Presences presences = new Presences();
 
@@ -19,11 +18,12 @@ public class presencesServer {
         try {
             servidor = new ServerSocket(port);
         } catch (Exception e) {
+            System.err.println("erro ao criar socket servidor...");
             e.printStackTrace();
             System.exit(-1);
         }
 
-        System.out.println("Servidor á espera de ligacoes no porto " + port);
+        System.out.println("Servidor a' espera de ligacoes no porto " + port);
 
         while (true) {
             try {
@@ -34,7 +34,7 @@ public class presencesServer {
                 t.start();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro na execucao do servidor: " + e);
                 System.exit(1);
             }
         }
