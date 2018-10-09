@@ -5,7 +5,6 @@
  */
 package Evento;
 
-import UI.Message;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -44,7 +43,8 @@ public class Corrida {
             }
             sc.close();
         } catch (FileNotFoundException ex) {
-            Message.ShowMessage("Ficheiro/Lista de carros não encontrado!!", "::: ERRO :::", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Erro na execucao do servidor: " + ex);
+            System.exit(1);
         }
 
     }
@@ -53,7 +53,7 @@ public class Corrida {
         String classificacao = "";
         int pos = 1;
         for (int i = 0; i <= 5; i++) { // i<=5 porque só apresenta as rimeiras 6 posições
-            classificacao +=participantes.get(i).getCarro().getnCarro()+",";
+            classificacao += participantes.get(i).getCarro().getnCarro() + ",";
         }
         return classificacao;
     }

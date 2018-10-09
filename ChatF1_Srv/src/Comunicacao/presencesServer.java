@@ -1,7 +1,6 @@
 package Comunicacao;
 
 import Evento.Corrida;
-import UI.Message;
 import java.net.*;
 import java.io.*;
 import javax.swing.JOptionPane;
@@ -20,8 +19,7 @@ public class presencesServer {
         try {
             servidor = new ServerSocket(port);
         } catch (Exception e) {
-            Message.ShowMessage("erro ao criar socket servidor...!", "::: ERRO :::", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
+            e.printStackTrace();
             System.exit(-1);
         }
 
@@ -36,7 +34,7 @@ public class presencesServer {
                 t.start();
 
             } catch (IOException e) {
-                Message.ShowMessage("Erro na execução do Servidor!", "::: ERRO :::", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
                 System.exit(1);
             }
         }

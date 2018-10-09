@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Comunicacao;
 
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.util.*;
 
 public class Presences {
 
@@ -47,7 +39,6 @@ public class Presences {
     }
 }
 
-//<editor-fold defaultstate="collapsed" desc="Inner Class IPInfo">
 class IPInfo {
 
     private String ip;
@@ -74,5 +65,4 @@ class IPInfo {
         }
         return result;
     }
-//</editor-fold>
 }
