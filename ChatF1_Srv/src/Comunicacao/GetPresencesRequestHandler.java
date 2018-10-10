@@ -39,7 +39,8 @@ public class GetPresencesRequestHandler extends Thread {
                 String msg = in.readLine();
                 System.out.println("Request=" + msg);
 
-                StringTokenizer tokens = new StringTokenizer(msg);
+                //StringTokenizer tokens = new StringTokenizer(msg);
+                StringTokenizer tokens = new StringTokenizer(msg," ,");
                 String metodo = tokens.nextToken();
 
                 switch (metodo.toLowerCase()) {
@@ -67,9 +68,12 @@ public class GetPresencesRequestHandler extends Thread {
                         break;
 
                     case "ult":
-                        String[] partes = metodo.split(" ");
-                        int carroUltrapassou = Integer.parseInt(partes[1]);
-                        int carroUltrapassado = Integer.parseInt(partes[2]);
+                        
+                        String teste= tokens.nextToken();
+                        String teste2= tokens.nextToken();
+                        
+                        int carroUltrapassou = Integer.parseInt(tokens.nextToken());
+                        int carroUltrapassado = Integer.parseInt(tokens.nextToken());
 
                         corrida.ultrapassagem(carroUltrapassou, carroUltrapassado);
                         response = corrida.obterClassificacao();
